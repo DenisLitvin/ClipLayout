@@ -25,7 +25,7 @@ Pod::Spec.new do |s|
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Denis Litvin' => 'den.litvinn@gmail.com' }
-  s.source           = { :git => 'https://github.com/Denis Litvin/ClipLayout.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/DenisLitvin/ClipLayout.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '9.3'
