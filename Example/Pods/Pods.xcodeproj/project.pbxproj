@@ -37,11 +37,11 @@
 		1E44A55AECA01060621B312F6327A922 /* Pods-ClipLayout_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ClipLayout_Tests-dummy.m"; sourceTree = "<group>"; };
 		29F8CBB4F9BAE5182B2F2EAEA22C57B3 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		2DFA9FF5E0CD5DB5081E424129F5FD16 /* Pods_ClipLayout_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClipLayout_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3E30B61C210F49160094E19C /* UIView+Swizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Swizzle.h"; sourceTree = "<group>"; };
-		3E30B61D210F49160094E19C /* ClipLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClipLayout.swift; sourceTree = "<group>"; };
-		3E30B61E210F49160094E19C /* UIView+Swizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Swizzle.m"; sourceTree = "<group>"; };
-		3E30B621210F49170094E19C /* UIView+Layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Layout.h"; sourceTree = "<group>"; };
-		3E30B622210F49170094E19C /* UIView+Layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Layout.m"; sourceTree = "<group>"; };
+		3E30B61C210F49160094E19C /* UIView+Swizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+Swizzle.h"; path = "ClipLayout/Classes/UIView+Swizzle.h"; sourceTree = "<group>"; };
+		3E30B61D210F49160094E19C /* ClipLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClipLayout.swift; path = ClipLayout/Classes/ClipLayout.swift; sourceTree = "<group>"; };
+		3E30B61E210F49160094E19C /* UIView+Swizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+Swizzle.m"; path = "ClipLayout/Classes/UIView+Swizzle.m"; sourceTree = "<group>"; };
+		3E30B621210F49170094E19C /* UIView+Layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+Layout.h"; path = "ClipLayout/Classes/UIView+Layout.h"; sourceTree = "<group>"; };
+		3E30B622210F49170094E19C /* UIView+Layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+Layout.m"; path = "ClipLayout/Classes/UIView+Layout.m"; sourceTree = "<group>"; };
 		4F4F630872BCC08E6DFBEB586C1D2B48 /* Pods-ClipLayout_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ClipLayout_Tests-umbrella.h"; sourceTree = "<group>"; };
 		51BD9CE62481CAA6732FEC3EF6A97524 /* ClipLayout.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ClipLayout.modulemap; sourceTree = "<group>"; };
 		5832E1E05CEA9DDAB049D9E110E1FA0E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };

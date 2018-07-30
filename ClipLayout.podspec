@@ -31,7 +31,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '9.3'
 
   s.source_files = 'ClipLayout/Classes/**/*'
-
+  s.swift_version = '4.1'
   # s.resource_bundles = {
   #   'ClipLayout' => ['ClipLayout/Assets/*.png']
   # }
