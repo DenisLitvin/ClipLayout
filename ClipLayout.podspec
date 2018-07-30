@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
   ClipLayout allows you to write less code for determining the size of the views and positioning them on screen.
                        DESC
 
-  s.homepage         = 'https://github.com/Denis Litvin/ClipLayout'
+  s.homepage         = 'https://github.com/DenisLitvin/ClipLayout'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Denis Litvin' => 'den.litvinn@gmail.com' }
