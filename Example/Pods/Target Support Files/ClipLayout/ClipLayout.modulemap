@@ -1,0 +1,6 @@
+framework module ClipLayout {
+  umbrella header "ClipLayout-umbrella.h"
+
+  export *
+  module * { export * }
+}

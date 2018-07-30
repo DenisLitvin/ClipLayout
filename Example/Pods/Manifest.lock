@@ -1,0 +1,16 @@
+PODS:
+  - ClipLayout (0.1.0)
+
+DEPENDENCIES:
+  - ClipLayout (from `../`)
+
+EXTERNAL SOURCES:
+  ClipLayout:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  ClipLayout: 69bc437bbbdf222d3e5b8d4828ff8c0e8d082700
+
+PODFILE CHECKSUM: 4ae47a417b657abaeac2fa87c58a8d29b91694fa
+
+COCOAPODS: 1.5.3

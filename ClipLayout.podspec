@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ClipLayout'
-  s.version          = '0.1.0'
-  s.summary          = 'A short description of ClipLayout.'
+  s.version          = '1.1.0'
+  s.summary          = "Simple and performant Layout Engine. It's faster and more concise than AutoLayout :)"
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+  ClipLayout allows you to write less code for determining the size of the views and positioning them on screen.
                        DESC
 
   s.homepage         = 'https://github.com/Denis Litvin/ClipLayout'
@@ -28,10 +28,10 @@ TODO: Add long description of the pod here.
   s.source           = { :git => 'https://github.com/Denis Litvin/ClipLayout.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.3'
 
   s.source_files = 'ClipLayout/Classes/**/*'
-  
+
   # s.resource_bundles = {
   #   'ClipLayout' => ['ClipLayout/Assets/*.png']
   # }
