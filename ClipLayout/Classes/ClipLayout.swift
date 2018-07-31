@@ -71,6 +71,13 @@ public class ClipLayout: NSObject {
             .forEach { $0.clip.invalidateLayout() }
     }
     
+    public func invalidateCache() {
+        cache = .zero
+        view.subviews
+            .filter { $0.clip.enabled }
+            .forEach { $0.clip.cache = .zero }
+    }
+    
     @objc
     public func layoutSubviews() {
         let sizeBounds = self.view.bounds.size
@@ -131,7 +138,7 @@ public class ClipLayout: NSObject {
         }
     }
     
-    private func measureSize(within bounds: CGSize) -> CGSize {
+    public func measureSize(within bounds: CGSize) -> CGSize {
         let width = measureWidth(within: bounds)
         let height = measureHeight(within: CGSize(width: width, height: bounds.height))
         return CGSize(width: width, height: height)

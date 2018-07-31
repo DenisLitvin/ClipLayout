@@ -13,6 +13,7 @@
 		3E30B625210F49170094E19C /* UIView+Swizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E30B61E210F49160094E19C /* UIView+Swizzle.m */; };
 		3E30B627210F49170094E19C /* UIView+Layout.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E30B621210F49170094E19C /* UIView+Layout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E30B628210F49170094E19C /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E30B622210F49170094E19C /* UIView+Layout.m */; };
+		3E30B64C21106D920094E19C /* ClipCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E30B64B21106D920094E19C /* ClipCollectionView.swift */; };
 		4CA4C023BCC108F065D79CB3B646A4E7 /* Pods-ClipLayout_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E44A55AECA01060621B312F6327A922 /* Pods-ClipLayout_Tests-dummy.m */; };
 		72FC3D75C7C77255E3061DA5A6442465 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
 		731D93993BE3A91D1A15FB14952C7E80 /* Pods-ClipLayout_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F4F630872BCC08E6DFBEB586C1D2B48 /* Pods-ClipLayout_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -42,6 +43,7 @@
 		3E30B61E210F49160094E19C /* UIView+Swizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+Swizzle.m"; path = "ClipLayout/Classes/UIView+Swizzle.m"; sourceTree = "<group>"; };
 		3E30B621210F49170094E19C /* UIView+Layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+Layout.h"; path = "ClipLayout/Classes/UIView+Layout.h"; sourceTree = "<group>"; };
 		3E30B622210F49170094E19C /* UIView+Layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+Layout.m"; path = "ClipLayout/Classes/UIView+Layout.m"; sourceTree = "<group>"; };
+		3E30B64B21106D920094E19C /* ClipCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ClipCollectionView.swift; path = ClipLayout/Classes/ClipCollectionView.swift; sourceTree = "<group>"; };
 		4F4F630872BCC08E6DFBEB586C1D2B48 /* Pods-ClipLayout_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ClipLayout_Tests-umbrella.h"; sourceTree = "<group>"; };
 		51BD9CE62481CAA6732FEC3EF6A97524 /* ClipLayout.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ClipLayout.modulemap; sourceTree = "<group>"; };
 		5832E1E05CEA9DDAB049D9E110E1FA0E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				3E30B61D210F49160094E19C /* ClipLayout.swift */,
+				3E30B64B21106D920094E19C /* ClipCollectionView.swift */,
 				3E30B621210F49170094E19C /* UIView+Layout.h */,
 				3E30B622210F49170094E19C /* UIView+Layout.m */,
 				3E30B61C210F49160094E19C /* UIView+Swizzle.h */,
@@ -298,6 +301,7 @@
 				3E30B625210F49170094E19C /* UIView+Swizzle.m in Sources */,
 				17CA2AD41E5B8E28BA6768C362261B31 /* ClipLayout-dummy.m in Sources */,
 				3E30B624210F49170094E19C /* ClipLayout.swift in Sources */,
+				3E30B64C21106D920094E19C /* ClipCollectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
