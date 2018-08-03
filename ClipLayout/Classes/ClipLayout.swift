@@ -46,25 +46,6 @@ public class ClipLayout: NSObject {
     public init(with view: UIView) {
         self.view = view
     }
-
-    private var rightToLeftLanguage: Bool {
-        return UIApplication.shared.userInterfaceLayoutDirection == .rightToLeft
-    }
-    
-    //recursive check for stretch attribute
-    private var verticallyStretched: Bool {
-        return self.verticalAlignment == .stretch
-            || self.view.subviews
-                .filter { $0.clip.enabled }
-                .contains { $0.clip.verticallyStretched }
-    }
-    
-    private var horizontallyStretched: Bool {
-        return self.horizontalAlignment == .stretch
-            || self.view.subviews
-                .filter { $0.clip.enabled }
-                .contains { $0.clip.horizontallyStretched }
-    }
     
     public func invalidateLayout() {
         layoutSubviews()
@@ -157,104 +138,131 @@ public class ClipLayout: NSObject {
     
     //MARK: - PRIVATE
     
+    //recursive check for stretch attribute
+    private var verticallyStretched: Bool {
+        return wantsSize.height == 0
+            && (alignment.vertical == .stretch
+                || view.subviews
+                    .filter { $0.clip.enabled }
+                    .contains { $0.clip.verticallyStretched && $0.clip.wantsSize.height == 0 })
+    }
+    
+    private var horizontallyStretched: Bool {
+        return wantsSize.width == 0
+            && (alignment.horizontal == .stretch
+                || view.subviews
+                    .filter { $0.clip.enabled }
+                    .contains { $0.clip.horizontallyStretched && $0.clip.wantsSize.width == 0 })
+    }
+    
+    private var rightToLeftLanguage: Bool {
+        return UIApplication.shared.userInterfaceLayoutDirection == .rightToLeft
+    }
+
     private func pixelRound(_ value: CGFloat) -> CGFloat {
         let scale = Float(UIScreen.main.scale)
         let result = roundf(Float(value) * scale) / scale
         return CGFloat(result)
     }
     
-    private func measureWidth(within size: CGSize) -> CGFloat {
+    private func measureWidth(within sizeBounds: CGSize) -> CGFloat {
         var width: CGFloat = 0
-        let size = CGSize(width: size.width - padding.left - padding.right,
-                            height: size.height - padding.top - padding.bottom)
+        let sizeBounds = CGSize(width: sizeBounds.width - padding.left - padding.right,
+                                height: sizeBounds.height - padding.top - padding.bottom)
         
         if cache.width != 0 { width = cache.width }
-        else if horizontallyStretched { width = size.width }
         else if wantsSize.width > 0 { width = wantsSize.width }
-        else if itemPositioning == .column || itemPositioning == .row {
-            
-            var max: CGFloat = 0
-            var accumulated: CGFloat = 0
-            let subviews = view.subviews.filter { $0.clip.enabled }
-
-            for sub in subviews {
-                let width = sub.clip.measureSize(within: size).width
-                    + sub.clip.padding.left
-                    + sub.clip.padding.right
-                if itemPositioning == .column, width > max {
-                    max = width
-                } else {
-                    accumulated += width
-                }
+        else if horizontallyStretched { width = sizeBounds.width }
+        else if itemPositioning == .row {
+            width = view.subviews
+                .filter { $0.clip.enabled }
+                .reduce(0) { $0 + $1.clip.measureSize(within: sizeBounds).width
+                    + $1.clip.padding.left
+                    + $1.clip.padding.right
             }
-            if itemPositioning == .row {
-                let widths = trimmedWidths(for: subviews, within: size)
-                for i in 0 ..< subviews.count {
-                    subviews[i].clip.cache.width = widths[i]
+        }
+        else if itemPositioning == .column {
+            width = view.subviews
+                .filter { $0.clip.enabled }
+                .map { $0.clip.measureSize(within: sizeBounds).width
+                    + $0.clip.padding.left
+                    + $0.clip.padding.right
                 }
-            }
-            width = itemPositioning == .row ? accumulated : max
+                .max() ?? 0
         }
         else {
-            let size = view.sizeThatFits(size)
+            let size = view.sizeThatFits(sizeBounds)
             width = size.width
-            cache.height = size.height
+            if cache.height == 0 { cache.height = size.height }
         }
-        cache.width = width
-        return min(width, size.width)
+        if cache.width == 0 { cache.width = width }
+        
+        //Allow view to adjust hight if width will be trimmed
+        //Primarily for UITextInput
+        if itemPositioning == .row {
+            let subviews = view.subviews.filter { $0.clip.enabled }
+            let widths = trimmedWidths(for: subviews, within: sizeBounds)
+            for i in 0 ..< subviews.count {
+                subviews[i].clip.invalidateCache()
+                subviews[i].clip.cache.width = widths[i]
+            }
+        }
+        return min(width, sizeBounds.width)
     }
     
-    private func measureHeight(within size: CGSize) -> CGFloat {
+    private func measureHeight(within sizeBounds: CGSize) -> CGFloat {
         var height: CGFloat = 0
-        let size = CGSize(width: size.width - padding.left - padding.right,
-                            height: size.height - padding.top - padding.bottom)
+        let sizeBounds = CGSize(width: sizeBounds.width - padding.left - padding.right,
+                                height: sizeBounds.height - padding.top - padding.bottom)
         
         if cache.height != 0 { height = cache.height }
-        else if verticallyStretched { height = size.height }
         else if wantsSize.height > 0 { height = wantsSize.height }
-        else if itemPositioning == .column || itemPositioning == .row {
-            
-            var max: CGFloat = 0
-            var accumulated: CGFloat = 0
-            for sub in view.subviews.filter({ $0.clip.enabled }) {
-                let height = sub.clip.measureSize(within: size).height
-                    + sub.clip.padding.top
-                    + sub.clip.padding.bottom
-                if itemPositioning == .row, height > max {
-                    max = height
-                } else {
-                    accumulated += height
+        else if verticallyStretched { height = sizeBounds.height }
+        else if itemPositioning == .column {
+            height = view.subviews
+                .filter { $0.clip.enabled }
+                .reduce(0, { $0 + $1.clip.measureSize(within: sizeBounds).height
+                    + $1.clip.padding.top
+                    + $1.clip.padding.bottom
+                })
+        }
+        else if itemPositioning == .row {
+            height = view.subviews
+                .filter { $0.clip.enabled }
+                .map { $0.clip.measureSize(within: sizeBounds).height
+                    + $0.clip.padding.top
+                    + $0.clip.padding.bottom
                 }
-            }
-            height = itemPositioning == .column ? accumulated : max
+                .max() ?? 0
         }
         else {
-            let size = view.sizeThatFits(size)
+            let size = view.sizeThatFits(sizeBounds)
             height = size.height
-            cache.width = size.width
+            if cache.width == 0 {
+                cache.width = size.width
+            }
         }
-        cache.height = height
-        return min(height, size.height)
+        if cache.height == 0 {
+            cache.height = height
+        }
+        return min(height, sizeBounds.height)
     }
     
+    
     private func trimmedHeights(for subviews: [UIView], within size: CGSize) -> [CGFloat] {
-        var heights: [CGFloat] = Array(repeating: 0, count: subviews.count)
         
         let stretchedIndices: [Int] = subviews
             .enumerated()
             .filter { $0.element.clip.verticallyStretched }
             .map { $0.offset }
         
-        let accumulatedHeight = subviews
-            .enumerated()
-            .filter { !$0.element.clip.verticallyStretched }
-            .reduce(0) { (partial: CGFloat, model: (offset: Int, element: UIView)) -> CGFloat in
-                let height = model.element.clip.measureHeight(within: size)
-                heights[model.offset] = height
-                return partial + height
-        }
+        let heights: [CGFloat] = subviews
+            .map { $0.clip.verticallyStretched ? 0 : $0.clip.measureSize(within: size).height }
         
-        let accumulatedPaddings = subviews
+        let accumulatedHeight: CGFloat = heights
+            .reduce(0, +)
+        
+        let accumulatedPaddings: CGFloat = subviews
             .reduce(0) { $0 + $1.clip.padding.top + $1.clip.padding.bottom }
         
         return trim(values: heights,
@@ -264,31 +272,26 @@ public class ClipLayout: NSObject {
                     limit: size.height)
     }
     
-    private func trimmedWidths(for subviews: [UIView], within size: CGSize) -> [CGFloat] {
-        var widths: [CGFloat] = Array(repeating: 0, count: subviews.count)
-        
+    private func trimmedWidths(for subviews: [UIView], within sizeBounds: CGSize) -> [CGFloat] {
         let stretchedIndices: [Int] = subviews
             .enumerated()
             .filter { $0.element.clip.horizontallyStretched }
             .map { $0.offset }
         
-        let accumulatedWidth = subviews
-            .enumerated()
-            .filter { !$0.element.clip.horizontallyStretched }
-            .reduce(0) { (partial: CGFloat, model: (offset: Int, element: UIView)) -> CGFloat in
-                let width = model.element.clip.measureWidth(within: size)
-                widths[model.offset] = width
-                return partial + width
-        }
-
-        let accumulatedPaddings = subviews
+        let widths: [CGFloat] = subviews
+            .map { $0.clip.horizontallyStretched ? 0 : $0.clip.measureSize(within: sizeBounds).width }
+        
+        let accumulatedWidth: CGFloat = widths
+            .reduce(0, +)
+        
+        let accumulatedPaddings: CGFloat = subviews
             .reduce(0) { $0 + $1.clip.padding.left + $1.clip.padding.right }
         
         return trim(values: widths,
-             stretchedIndices: stretchedIndices,
-             accumulatedValue: accumulatedWidth,
-             accumulatedPaddings: accumulatedPaddings,
-             limit: size.width)
+                    stretchedIndices: stretchedIndices,
+                    accumulatedValue: accumulatedWidth,
+                    accumulatedPaddings: accumulatedPaddings,
+                    limit: sizeBounds.width)
     }
     
     private func trim(values: [CGFloat],
@@ -297,26 +300,31 @@ public class ClipLayout: NSObject {
                       accumulatedPaddings: CGFloat,
                       limit: CGFloat) -> [CGFloat] {
         var result: [CGFloat] = values
-
+        
+        //trim explicit size
         if accumulatedValue + accumulatedPaddings > limit {
-            let penalty = accumulatedValue + accumulatedPaddings - limit
+            let totalPenalty = accumulatedValue + accumulatedPaddings - limit
             for i in 0 ..< values.count {
-                result[i] = max(values[i] - penalty * values[i] / accumulatedValue, 0)
+                let weight = values[i] / accumulatedValue
+                let penalty = totalPenalty * weight
+                result[i] = max(values[i] - penalty, 0)
             }
         }
+            //trim stretched size
         else {
-            let spaceLeft = (limit - accumulatedValue - accumulatedPaddings) / CGFloat(stretchedIndices.count)
-            stretchedIndices.forEach { result[$0] = spaceLeft }
+            let spaceLeft = (limit - accumulatedValue - accumulatedPaddings)
+            let value = spaceLeft / CGFloat(stretchedIndices.count)
+            stretchedIndices.forEach { result[$0] = value }
         }
         return result
     }
     
     private func originY(height: CGFloat, within limit: CGFloat) -> CGFloat {
         let y: CGFloat
-        if verticalAlignment == .middle || verticallyStretched {
+        if alignment.vertical == .mid || verticallyStretched {
             y = midY(height: height, within: limit)
         }
-        else if verticalAlignment == .head {
+        else if alignment.vertical == .head {
             y = padding.top
         }
         else {
@@ -339,10 +347,10 @@ public class ClipLayout: NSObject {
     
     private func originX(width: CGFloat, within limit: CGFloat) -> CGFloat {
         let x: CGFloat
-        if horizontalAlignment == .middle || horizontallyStretched {
+        if alignment.horizontal == .mid || horizontallyStretched {
             x = midX(width: width, within: limit)
         }
-        else if horizontalAlignment == .head {
+        else if alignment.horizontal == .head {
             x = padding.left
         }
         else {
