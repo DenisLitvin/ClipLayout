@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ClipLayout'
-  s.version          = '1.1.3'
+  s.version          = '1.1.4'
   s.summary          = "Simple and performant Layout Engine. It's faster and more concise AutoLayout alternative :)"
 
 # This description is used to generate tags and improve search results.

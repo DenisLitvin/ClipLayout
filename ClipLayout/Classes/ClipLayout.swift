@@ -24,6 +24,11 @@ public enum ClipDistribution {
 public struct ClipPosition {
     public var vertical: ClipAlignment
     public var horizontal: ClipAlignment
+    
+    public init(vertical: ClipAlignment, horizontal: ClipAlignment) {
+        self.vertical = vertical
+        self.horizontal = horizontal
+    }
 }
 
 @objc
@@ -36,9 +41,9 @@ public class ClipLayout: NSObject {
     public var cache: CGSize = .zero
     
     public var alignment: ClipPosition = ClipPosition(vertical: .mid, horizontal: .mid)
-    public var padding = UIEdgeInsets.zero
+    public var insets = UIEdgeInsets.zero
     public var wantsSize = CGSize.zero
-    public var itemPositioning = ClipDistribution.none
+    public var distribution = ClipDistribution.none
     
     public var supportRightToLeft = true
 
@@ -69,7 +74,7 @@ public class ClipLayout: NSObject {
         let sizes = subviews
             .map { $0.clip.measureSize(within: sizeBounds) }
         
-        if itemPositioning == .none {
+        if distribution == .none {
             for i in 0 ..< subviews.count {
                 let size = sizes[i]
                 let sub = subviews[i]
@@ -83,7 +88,7 @@ public class ClipLayout: NSObject {
                                    height: pixelRound(size.height))
             }
         }
-        else if itemPositioning == .column {
+        else if distribution == .column {
             let heights = trimmedHeights(for: subviews, within: sizeBounds)
             var lastY: CGFloat = 0
             
@@ -94,8 +99,8 @@ public class ClipLayout: NSObject {
                 let height = heights[i]
                 
                 let x = sub.clip.originX(width: width, within: sizeBounds.width)
-                let y = lastY + sub.clip.padding.top
-                lastY = y + height + sub.clip.padding.bottom
+                let y = lastY + sub.clip.insets.top
+                lastY = y + height + sub.clip.insets.bottom
                 
                 sub.frame = CGRect(x: pixelRound(x),
                                    y: pixelRound(y),
@@ -103,7 +108,7 @@ public class ClipLayout: NSObject {
                                    height: pixelRound(height))
             }
         }
-        else if itemPositioning == .row {
+        else if distribution == .row {
             var widths = trimmedWidths(for: subviews, within: sizeBounds)
             var lastX: CGFloat = 0
             
@@ -118,9 +123,9 @@ public class ClipLayout: NSObject {
                 let height = size.height
                 let width = widths[i]
                 
-                let x: CGFloat = lastX + sub.clip.padding.left
+                let x: CGFloat = lastX + sub.clip.insets.left
                 let y = sub.clip.originY(height: height, within: sizeBounds.height)
-                lastX = x + width + sub.clip.padding.right
+                lastX = x + width + sub.clip.insets.right
                 
                 sub.frame = CGRect(x: pixelRound(x),
                                    y: pixelRound(y),
@@ -132,7 +137,7 @@ public class ClipLayout: NSObject {
     
     public func measureSize(within bounds: CGSize) -> CGSize {
         let width = measureWidth(within: bounds)
-        let height = measureHeight(within: CGSize(width: width + padding.left + padding.right,
+        let height = measureHeight(within: CGSize(width: width + insets.left + insets.right,
                                                   height: bounds.height))
         return CGSize(width: width, height: height)
     }
@@ -168,26 +173,26 @@ public class ClipLayout: NSObject {
     
     private func measureWidth(within sizeBounds: CGSize) -> CGFloat {
         var width: CGFloat = 0
-        let sizeBounds = CGSize(width: sizeBounds.width - padding.left - padding.right,
-                                height: sizeBounds.height - padding.top - padding.bottom)
+        let sizeBounds = CGSize(width: sizeBounds.width - insets.left - insets.right,
+                                height: sizeBounds.height - insets.top - insets.bottom)
         
         if cache.width != 0 { width = cache.width }
         else if wantsSize.width > 0 { width = wantsSize.width }
         else if horizontallyStretched { width = sizeBounds.width }
-        else if itemPositioning == .row {
+        else if distribution == .row {
             width = view.subviews
                 .filter { $0.clip.enabled }
                 .reduce(0) { $0 + $1.clip.measureSize(within: sizeBounds).width
-                    + $1.clip.padding.left
-                    + $1.clip.padding.right
+                    + $1.clip.insets.left
+                    + $1.clip.insets.right
             }
         }
-        else if itemPositioning == .column {
+        else if distribution == .column {
             width = view.subviews
                 .filter { $0.clip.enabled }
                 .map { $0.clip.measureSize(within: sizeBounds).width
-                    + $0.clip.padding.left
-                    + $0.clip.padding.right
+                    + $0.clip.insets.left
+                    + $0.clip.insets.right
                 }
                 .max() ?? 0
         }
@@ -200,7 +205,7 @@ public class ClipLayout: NSObject {
         
         //Allow view to adjust hight if width will be trimmed
         //Primarily for UITextInput
-        if itemPositioning == .row {
+        if distribution == .row {
             let subviews = view.subviews.filter { $0.clip.enabled }
             let widths = trimmedWidths(for: subviews, within: sizeBounds)
             for i in 0 ..< subviews.count {
@@ -213,26 +218,26 @@ public class ClipLayout: NSObject {
     
     private func measureHeight(within sizeBounds: CGSize) -> CGFloat {
         var height: CGFloat = 0
-        let sizeBounds = CGSize(width: sizeBounds.width - padding.left - padding.right,
-                                height: sizeBounds.height - padding.top - padding.bottom)
+        let sizeBounds = CGSize(width: sizeBounds.width - insets.left - insets.right,
+                                height: sizeBounds.height - insets.top - insets.bottom)
         
         if cache.height != 0 { height = cache.height }
         else if wantsSize.height > 0 { height = wantsSize.height }
         else if verticallyStretched { height = sizeBounds.height }
-        else if itemPositioning == .column {
+        else if distribution == .column {
             height = view.subviews
                 .filter { $0.clip.enabled }
                 .reduce(0, { $0 + $1.clip.measureSize(within: sizeBounds).height
-                    + $1.clip.padding.top
-                    + $1.clip.padding.bottom
+                    + $1.clip.insets.top
+                    + $1.clip.insets.bottom
                 })
         }
-        else if itemPositioning == .row {
+        else if distribution == .row {
             height = view.subviews
                 .filter { $0.clip.enabled }
                 .map { $0.clip.measureSize(within: sizeBounds).height
-                    + $0.clip.padding.top
-                    + $0.clip.padding.bottom
+                    + $0.clip.insets.top
+                    + $0.clip.insets.bottom
                 }
                 .max() ?? 0
         }
@@ -264,7 +269,7 @@ public class ClipLayout: NSObject {
             .reduce(0, +)
         
         let accumulatedPaddings: CGFloat = subviews
-            .reduce(0) { $0 + $1.clip.padding.top + $1.clip.padding.bottom }
+            .reduce(0) { $0 + $1.clip.insets.top + $1.clip.insets.bottom }
         
         return trim(values: heights,
                     stretchedIndices: stretchedIndices,
@@ -286,7 +291,7 @@ public class ClipLayout: NSObject {
             .reduce(0, +)
         
         let accumulatedPaddings: CGFloat = subviews
-            .reduce(0) { $0 + $1.clip.padding.left + $1.clip.padding.right }
+            .reduce(0) { $0 + $1.clip.insets.left + $1.clip.insets.right }
         
         return trim(values: widths,
                     stretchedIndices: stretchedIndices,
@@ -326,10 +331,10 @@ public class ClipLayout: NSObject {
             y = midY(height: height, within: limit)
         }
         else if alignment.vertical == .head {
-            y = padding.top
+            y = insets.top
         }
         else {
-            y = limit - height - padding.bottom
+            y = limit - height - insets.bottom
         }
         return y
     }
@@ -337,11 +342,11 @@ public class ClipLayout: NSObject {
     private func midY(height: CGFloat, within limit: CGFloat) -> CGFloat {
         var y: CGFloat = 0
         y = (limit - height) / 2
-        if y < padding.top {
-            y = padding.top
+        if y < insets.top {
+            y = insets.top
         }
-        if limit - height - y < padding.bottom {
-            y = limit - height - padding.bottom
+        if limit - height - y < insets.bottom {
+            y = limit - height - insets.bottom
         }
         return y
     }
@@ -352,10 +357,10 @@ public class ClipLayout: NSObject {
             x = midX(width: width, within: limit)
         }
         else if alignment.horizontal == .head {
-            x = padding.left
+            x = insets.left
         }
         else {
-            x = limit - width - padding.right
+            x = limit - width - insets.right
         }
         return x
     }
@@ -363,11 +368,11 @@ public class ClipLayout: NSObject {
     private func midX(width: CGFloat, within limit: CGFloat) -> CGFloat {
         var x: CGFloat = 0
         x = (limit - width) / 2
-        if x < padding.left {
-            x = padding.left
+        if x < insets.left {
+            x = insets.left
         }
-        if limit - width - x < padding.right {
-            x = limit - width - padding.right
+        if limit - width - x < insets.right {
+            x = limit - width - insets.right
         }
         return x
     }
