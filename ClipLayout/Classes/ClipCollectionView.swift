@@ -12,7 +12,7 @@ public protocol DataBinder {
     func set(data: Data)
 }
 
-public class ClipCollectionView<Cell: DataBinder>:
+open class ClipCollectionView<Cell: DataBinder>:
     UICollectionView,
     UICollectionViewDataSource,
     UICollectionViewDelegateFlowLayout
@@ -21,11 +21,12 @@ public class ClipCollectionView<Cell: DataBinder>:
     
     public var data: [Cell.Data] = []
     public let cellId = "cellId"
-    public var cellWidth: CGFloat?
+    public var maxSize = CGSize.zero
     
     private let manequinCell = Cell()
     
     public init(collectionViewLayout layout: UICollectionViewLayout) {
+        maxSize.height = .greatestFiniteMagnitude
         super.init(frame: .zero, collectionViewLayout: layout)
         register(Cell.self, forCellWithReuseIdentifier: cellId)
         self.dataSource = self
@@ -36,27 +37,31 @@ public class ClipCollectionView<Cell: DataBinder>:
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return data.count
     }
     
-    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? Cell
             else { fatalError("Could not dequeue Cell") }
         cell.set(data: data[indexPath.row])
         return cell
     }
     
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         manequinCell.set(data: data[indexPath.row])
-        let size = manequinCell.clip.measureSize(within: CGSize(width: cellWidth ?? collectionView.bounds.width, height: CGFloat.greatestFiniteMagnitude))
+        let finalMaxSize = CGSize(
+            width: maxSize.width == 0 ? collectionView.bounds.width : maxSize.width,
+            height: maxSize.height
+        )
+        let size = manequinCell.clip.measureSize(within: finalMaxSize)
         manequinCell.clip.invalidateCache()
-        return CGSize(width: cellWidth ?? collectionView.bounds.width, height: size.height)
+        return size
     }
 }
 
-public class ClipCell: UICollectionViewCell {
-    override public func layoutSubviews() {
+open class ClipCell: UICollectionViewCell {
+    override open func layoutSubviews() {
         super.layoutSubviews()
         clip.layoutSubviews()
     }
