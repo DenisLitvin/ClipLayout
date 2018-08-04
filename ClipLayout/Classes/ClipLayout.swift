@@ -61,6 +61,7 @@ public class ClipLayout: NSObject {
             .forEach { $0.clip.cache = .zero }
     }
     
+    @objc
     public func layoutSubviews() {
         let sizeBounds = view.bounds.size
         var subviews = view.subviews
