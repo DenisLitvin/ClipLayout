@@ -22,8 +22,8 @@ public enum ClipDistribution {
 }
 
 public struct ClipPosition {
-    var vertical: ClipAlignment
-    var horizontal: ClipAlignment
+    public var vertical: ClipAlignment
+    public var horizontal: ClipAlignment
 }
 
 @objc
