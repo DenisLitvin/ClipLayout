@@ -53,81 +53,99 @@ public class ClipLayout: NSObject {
     }
     
     //MARK: - SWIFTY WAY TO CONFIGURE
+    @discardableResult
     public func enabled() -> ClipLayout {
         enable = true
         return self
     }
     
+    @discardableResult
     public func inset(_ insets: UIEdgeInsets) -> ClipLayout {
         self.insets = insets
         return self
     }
     
+    @discardableResult
     public func inset(_ inset: CGFloat) -> ClipLayout {
         self.insets = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
         return self
     }
     
+    @discardableResult
     public func insetLeft(_ inset: CGFloat) -> ClipLayout {
         self.insets.left = inset
         return self
     }
     
+    @discardableResult
     public func insetRight(_ inset: CGFloat) -> ClipLayout {
         self.insets.right = inset
         return self
     }
     
+    @discardableResult
     public func insetTop(_ inset: CGFloat) -> ClipLayout {
         self.insets.top = inset
         return self
     }
     
+    @discardableResult
     public func insetBottom(_ inset: CGFloat) -> ClipLayout {
         self.insets.bottom = inset
         return self
     }
     
+    @discardableResult
     public func withDistribution(_ distribution: ClipDistribution) -> ClipLayout {
         self.distribution = distribution
         return self
     }
     
+    @discardableResult
     public func aligned(v: ClipAlignment, h: ClipAlignment) -> ClipLayout {
         self.alignment = ClipPosition(vertical: v, horizontal: h)
         return self
     }
     
+    @discardableResult
     public func verticallyAligned(_ alignment: ClipAlignment) -> ClipLayout {
         self.alignment.vertical = alignment
         return self
     }
     
+    @discardableResult
     public func horizontallyAligned(_ alignment: ClipAlignment) -> ClipLayout {
         self.alignment.horizontal = alignment
         return self
     }
     
+    @discardableResult
     public func withSize(_ size: CGSize) -> ClipLayout {
         self.wantsSize = size
         return self
     }
     
+    @discardableResult
     public func withHeight(_ height: CGFloat) -> ClipLayout {
         self.wantsSize.height = height
         return self
     }
     
+    @discardableResult
     public func withWidth(_ width: CGFloat) -> ClipLayout {
         self.wantsSize.width = width
         return self
     }
     
+    @discardableResult
     public func supportedRTL(_ supported: Bool) -> ClipLayout {
         self.supportRightToLeft = supported
         return self
     }
     
+    public func toView(_ supported: Bool) -> UIView {
+        return view
+    }
     //MARK: - LAYOUT
     public func invalidateLayout() {
         layoutSubviews()
