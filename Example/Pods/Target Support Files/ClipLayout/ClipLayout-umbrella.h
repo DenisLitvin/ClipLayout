@@ -10,8 +10,9 @@
 #endif
 #endif
 
+#import "UIView+Layout.h"
+#import "UIView+Swizzle.h"
 
 FOUNDATION_EXPORT double ClipLayoutVersionNumber;
 FOUNDATION_EXPORT const unsigned char ClipLayoutVersionString[];
 
-#import <ClipLayout/UIView+Layout.h>

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3C27B526B780C530197BE7EA /* Pods_ClipLayout_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FDC40953606FC7EAE6103B2 /* Pods_ClipLayout_Tests.framework */; };
+		3E981AB72118BF1100C752AA /* TwitterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E981AB62118BF1000C752AA /* TwitterView.swift */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 /* End PBXBuildFile section */
 
@@ -15,6 +16,7 @@
 		01535A7D1DF719B76DBA3809 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		03B2C0EF68DF9B7012771106 /* ClipLayout.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = ClipLayout.podspec; path = ../ClipLayout.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		29899C6251B148483F952407 /* Pods-ClipLayout_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClipLayout_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ClipLayout_Tests/Pods-ClipLayout_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		3E981AB62118BF1000C752AA /* TwitterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterView.swift; sourceTree = "<group>"; };
 		3FDC40953606FC7EAE6103B2 /* Pods_ClipLayout_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClipLayout_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		48AE55DFCD1CE0C3D0485772 /* Pods-ClipLayout_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClipLayout_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ClipLayout_Tests/Pods-ClipLayout_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* ClipLayout_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClipLayout_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -47,6 +49,7 @@
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
+				3E981AB62118BF1000C752AA /* TwitterView.swift */,
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACE81AFB9204008FA782 /* Tests */,
 				607FACD11AFB9204008FA782 /* Products */,
@@ -209,6 +212,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E981AB72118BF1100C752AA /* TwitterView.swift in Sources */,
 				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

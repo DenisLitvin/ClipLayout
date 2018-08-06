@@ -1,5 +1,5 @@
 PODS:
-  - ClipLayout (0.1.0)
+  - ClipLayout (1.2.1)
 
 DEPENDENCIES:
   - ClipLayout (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  ClipLayout: 69bc437bbbdf222d3e5b8d4828ff8c0e8d082700
+  ClipLayout: 3dd61094b101a5e73b8bca4432277989bd2ed077
 
 PODFILE CHECKSUM: 4ae47a417b657abaeac2fa87c58a8d29b91694fa
 

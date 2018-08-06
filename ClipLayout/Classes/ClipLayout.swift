@@ -8,20 +8,23 @@
 
 import UIKit
 
-public enum ClipAlignment {
+@objc
+public enum ClipAlignment: Int {
     case head
     case tail
     case mid
     case stretch
 }
 
-public enum ClipDistribution {
+@objc
+public enum ClipDistribution: Int {
     case row
     case column
     case none
 }
 
-public struct ClipPosition {
+@objc
+public class ClipPosition: NSObject {
     public var vertical: ClipAlignment
     public var horizontal: ClipAlignment
     
@@ -40,11 +43,15 @@ public class ClipLayout: NSObject {
     @objc
     public var cache: CGSize = .zero
     
+    @objc
     public var alignment: ClipPosition = ClipPosition(vertical: .mid, horizontal: .mid)
+    @objc
     public var insets = UIEdgeInsets.zero
+    @objc
     public var wantsSize = CGSize.zero
+    @objc
     public var distribution = ClipDistribution.none
-    
+    @objc
     public var supportRightToLeft = true
 
     @objc
@@ -143,17 +150,18 @@ public class ClipLayout: NSObject {
         return self
     }
     
-    public func toView(_ supported: Bool) -> UIView {
+    public func toView() -> UIView {
         return view
     }
     //MARK: - LAYOUT
+    @objc
     public func invalidateLayout() {
         layoutSubviews()
         view.subviews
             .filter { $0.clip.enable }
             .forEach { $0.clip.invalidateLayout() }
     }
-    
+
     public func invalidateCache() {
         cache = .zero
         view.subviews

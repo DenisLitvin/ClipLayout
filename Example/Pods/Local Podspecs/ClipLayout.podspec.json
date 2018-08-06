@@ -1,9 +1,9 @@
 {
   "name": "ClipLayout",
-  "version": "0.1.0",
-  "summary": "A short description of ClipLayout.",
-  "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/Denis Litvin/ClipLayout",
+  "version": "1.2.1",
+  "summary": "Simple and performant Layout Engine. It's faster and more concise AutoLayout alternative :)",
+  "description": "ClipLayout allows you to write less code for determining the size of the views and positioning them on screen.",
+  "homepage": "https://github.com/DenisLitvin/ClipLayout",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -12,11 +12,12 @@
     "Denis Litvin": "den.litvinn@gmail.com"
   },
   "source": {
-    "git": "https://github.com/Denis Litvin/ClipLayout.git",
-    "tag": "0.1.0"
+    "git": "https://github.com/DenisLitvin/ClipLayout.git",
+    "tag": "1.2.1"
   },
   "platforms": {
-    "ios": "8.0"
+    "ios": "9.3"
   },
-  "source_files": "ClipLayout/Classes/**/*"
+  "source_files": "ClipLayout/Classes/**/*",
+  "swift_version": "4.1"
 }
