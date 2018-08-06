@@ -150,9 +150,6 @@ public class ClipLayout: NSObject {
         return self
     }
     
-    public func toView() -> UIView {
-        return view
-    }
     //MARK: - LAYOUT
     @objc
     public func invalidateLayout() {
