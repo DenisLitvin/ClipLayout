@@ -25,7 +25,7 @@ static const void *kLayoutAssociatedKey = &kLayoutAssociatedKey;
 }
 
 - (void)configureWithBlock:(LayoutConfigurationBlock)block {
-    self.clip.enabled = YES;
+    self.clip.enable = YES;
     if (block != nil) {
         block(self.clip);
     }

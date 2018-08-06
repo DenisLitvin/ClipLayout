@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		17CA2AD41E5B8E28BA6768C362261B31 /* ClipLayout-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0715E2285BB2CB53D843C6F2EB5DDB7A /* ClipLayout-dummy.m */; };
-		3E0EAF442115F66900BDE6B0 /* Shortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0EAF432115F66900BDE6B0 /* Shortcuts.swift */; };
 		3E30B623210F49170094E19C /* UIView+Swizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E30B61C210F49160094E19C /* UIView+Swizzle.h */; };
 		3E30B624210F49170094E19C /* ClipLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E30B61D210F49160094E19C /* ClipLayout.swift */; };
 		3E30B625210F49170094E19C /* UIView+Swizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E30B61E210F49160094E19C /* UIView+Swizzle.m */; };
@@ -39,7 +38,6 @@
 		1E44A55AECA01060621B312F6327A922 /* Pods-ClipLayout_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ClipLayout_Tests-dummy.m"; sourceTree = "<group>"; };
 		29F8CBB4F9BAE5182B2F2EAEA22C57B3 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		2DFA9FF5E0CD5DB5081E424129F5FD16 /* Pods_ClipLayout_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClipLayout_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3E0EAF432115F66900BDE6B0 /* Shortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Shortcuts.swift; path = ClipLayout/Classes/Shortcuts.swift; sourceTree = "<group>"; };
 		3E30B61C210F49160094E19C /* UIView+Swizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+Swizzle.h"; path = "ClipLayout/Classes/UIView+Swizzle.h"; sourceTree = "<group>"; };
 		3E30B61D210F49160094E19C /* ClipLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClipLayout.swift; path = ClipLayout/Classes/ClipLayout.swift; sourceTree = "<group>"; };
 		3E30B61E210F49160094E19C /* UIView+Swizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+Swizzle.m"; path = "ClipLayout/Classes/UIView+Swizzle.m"; sourceTree = "<group>"; };
@@ -149,7 +147,6 @@
 			children = (
 				3E30B61D210F49160094E19C /* ClipLayout.swift */,
 				3E30B64B21106D920094E19C /* ClipCollectionView.swift */,
-				3E0EAF432115F66900BDE6B0 /* Shortcuts.swift */,
 				3E30B621210F49170094E19C /* UIView+Layout.h */,
 				3E30B622210F49170094E19C /* UIView+Layout.m */,
 				3E30B61C210F49160094E19C /* UIView+Swizzle.h */,
@@ -305,7 +302,6 @@
 				17CA2AD41E5B8E28BA6768C362261B31 /* ClipLayout-dummy.m in Sources */,
 				3E30B624210F49170094E19C /* ClipLayout.swift in Sources */,
 				3E30B64C21106D920094E19C /* ClipCollectionView.swift in Sources */,
-				3E0EAF442115F66900BDE6B0 /* Shortcuts.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
