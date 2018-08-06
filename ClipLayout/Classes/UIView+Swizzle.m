@@ -31,7 +31,7 @@
 - (void)xxx_layoutSubviews {
     [self xxx_layoutSubviews];
     if (self.clip.enable) {
-        [[self.clip layoutSubviews];
+        [self.clip layoutSubviews];
         self.clip.cache = CGSizeZero; //invalidate after layout cycle
     }
 }
