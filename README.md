@@ -19,6 +19,19 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod 'ClipLayout'
 ```
+## 💫 Expressiveness
+It's easy to read and takes few lines of code to make complex layout. 
+## 🚀 Performance
+It's the fastest Layout Engine compared to other popular libraries. 
+## 📐 Automatic estimations
+You don't have to specify the size. ClipLayout will try to estimate how much space the view needs for it's content. And place subview in the center of the superview by default. 
+## ✂️ Trimming
+If views don't fit on the screen their size will be adjusted.
+## ✨ Animations out of the box
+
+## 🙋‍♂️ RTL language support
+##  Dynamic Collection Cells
+
 
 ## Author
 
