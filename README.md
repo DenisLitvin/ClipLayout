@@ -26,7 +26,12 @@ pod 'ClipLayout'
 
 It's easy to read and takes only few lines of code to make complex layout. 
 ## 🚀 Performance
-It's the fastest Layout Engine compared to other popular libraries. 
+
+<p align="center">
+    <img src="docs/performance.png" width="700"/> 
+<p/>
+
+It's the fastest Layout Engine compared to other popular libraries.
 ## 📐 Automatic estimations
 You don't have to specify the size. ClipLayout will try to estimate how much space the view needs for it's content. And place subview in the center of the superview by default. 
 ## ✂️ Trimming
