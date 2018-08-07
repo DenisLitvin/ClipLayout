@@ -8,7 +8,6 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-## Requirements
 
 ## Installation
 
@@ -18,8 +17,14 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod 'ClipLayout'
 ```
+
 ## 💫 Expressiveness
-It's easy to read and takes few lines of code to make complex layout. 
+
+<p align="center">
+    <img src="docs/expressiveness.png" width="800"/> 
+<p/>
+
+It's easy to read and takes only few lines of code to make complex layout. 
 ## 🚀 Performance
 It's the fastest Layout Engine compared to other popular libraries. 
 ## 📐 Automatic estimations
