@@ -26,7 +26,12 @@ pod 'ClipLayout'
 
 It's easy to read and takes only few lines of code to make complex layout. 
 ## 🚀 Performance
-It's the fastest Layout Engine compared to other popular libraries. 
+
+<p align="center">
+    <img src="docs/performance.png" width="700"/> 
+<p/>
+
+It's the fastest Layout Engine compared to other popular libraries.
 ## 📐 Automatic estimations
 You don't have to specify the size. ClipLayout will try to estimate how much space the view needs for it's content. And place subview in the center of the superview by default. 
 ## ✂️ Trimming
@@ -70,6 +75,23 @@ To set data use `data` property.
 ```swift
 let view = ClipCollectionView<DynamicCell>(collectionViewLayout: UICollectionViewFlowLayout())
 view.data = [SomeData]()
+```
+
+## 🎏 Objc and Swift APIs
+In swift you can use both. 
+
+**objc:**
+```objective-c
+[view configureWithBlock:^(ClipLayout *clip) {
+        clip.wantsSize = CGSizeMake(100, 100);
+        clip.alignment.vertical = ClipAlignmentHead;
+        clip.distribution = ClipDistributionRow;
+    }];
+```
+
+**swift:**
+```swift
+view.clip.enabled().withWidth(100).withHeight(100).verticallyAligned(.head).withDistribution(.row)
 ```
 ## Author
 
