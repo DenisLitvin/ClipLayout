@@ -76,6 +76,23 @@ To set data use `data` property.
 let view = ClipCollectionView<DynamicCell>(collectionViewLayout: UICollectionViewFlowLayout())
 view.data = [SomeData]()
 ```
+
+## 🎏 Objc and Swift APIs
+In swift you can use both. 
+
+**objc:**
+```objective-c
+[view configureWithBlock:^(ClipLayout *clip) {
+        clip.wantsSize = CGSizeMake(100, 100);
+        clip.alignment.vertical = ClipAlignmentHead;
+        clip.distribution = ClipDistributionRow;
+    }];
+```
+
+**swift:**
+```swift
+view.clip.enabled().withWidth(100).withHeight(100).verticallyAligned(.head).withDistribution(.row)
+```
 ## Author
 
 Denis Litvin, den.litvinn@gmail.com
