@@ -25,9 +25,12 @@ public enum ClipDistribution: Int {
 
 @objc
 public class ClipPosition: NSObject {
+    @objc
     public var vertical: ClipAlignment
+    @objc
     public var horizontal: ClipAlignment
     
+    @objc
     public init(vertical: ClipAlignment, horizontal: ClipAlignment) {
         self.vertical = vertical
         self.horizontal = horizontal
