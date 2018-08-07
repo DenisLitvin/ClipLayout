@@ -70,8 +70,8 @@ public class ClipLayout: NSObject {
     }
     
     @discardableResult
-    public func inset(_ insets: UIEdgeInsets) -> ClipLayout {
-        self.insets = insets
+    public func inset(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat) -> ClipLayout {
+        self.insets = UIEdgeInsetsMake(top, left, bottom, right)
         return self
     }
     
