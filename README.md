@@ -30,7 +30,11 @@ If views don't fit on the screen their size will be adjusted.
 ## ✨ Animations out of the box
 
 ## 🙋‍♂️ RTL language support
-##  Dynamic Collection Cells
+
+## 🍻 Interoperability
+You can mix and match ClipLayout with Auto Layout or any other framework. You only need to specify property on UIView `clip.enable = true`
+
+## 🎛 Dynamic Collection Cells
 
 
 ## Author
