@@ -25,16 +25,26 @@ It's the fastest Layout Engine compared to other popular libraries.
 ## 📐 Automatic estimations
 You don't have to specify the size. ClipLayout will try to estimate how much space the view needs for it's content. And place subview in the center of the superview by default. 
 ## ✂️ Trimming
+
+<p align="center">
+    <img src="docs/trimming.gif" width="150"/> 
+<p/>
+
 If views don't fit on the screen their size will be adjusted.
 ## ✨ Animations out of the box
-<img src="docs/animation.gif" width="600"/>
+
+<p align="center">
+    <img src="docs/animation.gif" width="150"/> 
+<p/>
+
+It's easy to animate changes in Clip Layout. Just alter the layout however you want and call `clip.invalidateLayout()` on the superview in animation context. 
 ```swift
-enclosedRowView.clip.withDistribution(flag ? .column : .row)
-flag = !flag
+view.clip.withDistribution(flag ? .column : .row)
 UIView.animate(withDuration: 0.8) {
-    self.clip.invalidateLayout()
+    self.superview.clip.invalidateLayout()
 }
-```
+``` 
+
 ## 🙋‍♂️ RTL language support
 RTL support is enabled by default on any view. If you use `distribution == .row`, views will be mirrored in horizontal axis. To disable RTL set `supportRightToLeft = false`.
 
