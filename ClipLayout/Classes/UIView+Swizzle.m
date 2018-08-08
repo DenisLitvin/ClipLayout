@@ -6,10 +6,22 @@
 //  Copyright © 2018 Denis Litvin. All rights reserved.
 //
 
-#import "UIView+Swizzle.h"
 #import <objc/runtime.h>
-#import "UIView+Layout.h"
+
 #import <ClipLayout/ClipLayout-Swift.h>
+#import "UIView+Swizzle.h"
+#import "UIView+Layout.h"
+
+static IMP __original_layoutSubviews_imp;
+
+void __swizzle_layoutSubviews(id self, IMP _cmd) {
+    ((void(*)(id self, IMP _cmd))__original_layoutSubviews_imp)(self, _cmd);
+    UIView *view = (UIView *)self;
+    if (view.clip.enable) {
+        [view.clip layoutSubviews];
+        view.clip.cache = CGSizeZero;
+    }
+}
 
 @implementation UIView (Swizzle)
 
@@ -17,23 +29,10 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         Class class = [self class];
-        {
-            SEL originalSelector = @selector(layoutSubviews);
-            SEL swizzledSelector = @selector(xxx_layoutSubviews);
-            
-            Method originalMethod = class_getInstanceMethod(class, originalSelector);
-            Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
-            method_exchangeImplementations(originalMethod, swizzledMethod);
-        }
+        SEL originalSelector = @selector(layoutSubviews);
+        Method originalMethod = class_getInstanceMethod(class, originalSelector);
+        __original_layoutSubviews_imp = method_setImplementation(originalMethod, (IMP)__swizzle_layoutSubviews);
     });
-}
-
-- (void)xxx_layoutSubviews {
-    [self xxx_layoutSubviews];
-    if (self.clip.enable) {
-        [self.clip layoutSubviews];
-        self.clip.cache = CGSizeZero; //invalidate after layout cycle
-    }
 }
 
 @end
