@@ -305,17 +305,7 @@ public class ClipLayout: NSObject {
             if cache.height == 0 { cache.height = size.height }
         }
         if cache.width == 0 { cache.width = width }
-        
-        //Allow view to adjust height if width will be trimmed
-        //Primarily for UITextInput
-        if distribution == .row {
-            let subviews = view.subviews.filter { $0.clip.enable }
-            let widths = trimmedWidths(for: subviews, within: sizeBounds)
-            for i in 0 ..< subviews.count {
-                subviews[i].clip.invalidateCache()
-                subviews[i].clip.cache.width = widths[i]
-            }
-        }
+        adjustForTextInputs(within: sizeBounds)
         return min(width, sizeBounds.width)
     }
     
@@ -351,12 +341,23 @@ public class ClipLayout: NSObject {
                 cache.width = size.width
             }
         }
-        if cache.height == 0 {
-            cache.height = height
-        }
+        if cache.height == 0 { cache.height = height }
+        adjustForTextInputs(within: sizeBounds)
         return min(height, sizeBounds.height)
     }
     
+    private func adjustForTextInputs(within sizeBounds: CGSize) {
+        //Allow view to adjust height if width will be trimmed
+        //Primarily for UITextInput
+        if distribution == .row {
+            let subviews = view.subviews.filter { $0.clip.enable }
+            let widths = trimmedWidths(for: subviews, within: sizeBounds)
+            for i in 0 ..< subviews.count {
+                subviews[i].clip.invalidateCache()
+                subviews[i].clip.cache.width = widths[i]
+            }
+        }
+    }
     
     private func trimmedHeights(for subviews: [UIView], within size: CGSize) -> [CGFloat] {
         
