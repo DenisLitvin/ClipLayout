@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2A133FA051D7078F721A737205C81465 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
+		3E11383F2138BF5700028202 /* CALayer+Swizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E11383D2138BF5700028202 /* CALayer+Swizzle.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E1138402138BF5700028202 /* CALayer+Swizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E11383E2138BF5700028202 /* CALayer+Swizzle.m */; };
+		3E1138432138C03300028202 /* CALayer+Layout.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E1138412138C03300028202 /* CALayer+Layout.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E1138442138C03300028202 /* CALayer+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1138422138C03300028202 /* CALayer+Layout.m */; };
 		3F818470514EE69783EA5FC17D8E7081 /* UIView+Swizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = B271CCFB07C1410E4ECF1C67A1DE235B /* UIView+Swizzle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4BF9D273F05158ED35D7BDA777FDAC96 /* UIView+Layout.h in Headers */ = {isa = PBXBuildFile; fileRef = 087C394F0A076C9A9FD5B3BDC3D90C1F /* UIView+Layout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4CA4C023BCC108F065D79CB3B646A4E7 /* Pods-ClipLayout_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E44A55AECA01060621B312F6327A922 /* Pods-ClipLayout_Tests-dummy.m */; };
@@ -37,8 +41,12 @@
 		087C394F0A076C9A9FD5B3BDC3D90C1F /* UIView+Layout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+Layout.h"; path = "ClipLayout/Classes/UIView+Layout.h"; sourceTree = "<group>"; };
 		0F1109F40A4BA698E2A72FBE44C429F2 /* ClipLayout-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ClipLayout-dummy.m"; sourceTree = "<group>"; };
 		1E44A55AECA01060621B312F6327A922 /* Pods-ClipLayout_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ClipLayout_Tests-dummy.m"; sourceTree = "<group>"; };
-		2DFA9FF5E0CD5DB5081E424129F5FD16 /* Pods_ClipLayout_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ClipLayout_Tests.framework; path = "Pods-ClipLayout_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2FF4F2C997666B6FB0E4A241F383A891 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		2DFA9FF5E0CD5DB5081E424129F5FD16 /* Pods_ClipLayout_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClipLayout_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2FF4F2C997666B6FB0E4A241F383A891 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		3E11383D2138BF5700028202 /* CALayer+Swizzle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CALayer+Swizzle.h"; sourceTree = "<group>"; };
+		3E11383E2138BF5700028202 /* CALayer+Swizzle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Swizzle.m"; sourceTree = "<group>"; };
+		3E1138412138C03300028202 /* CALayer+Layout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CALayer+Layout.h"; sourceTree = "<group>"; };
+		3E1138422138C03300028202 /* CALayer+Layout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Layout.m"; sourceTree = "<group>"; };
 		4F4F630872BCC08E6DFBEB586C1D2B48 /* Pods-ClipLayout_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ClipLayout_Tests-umbrella.h"; sourceTree = "<group>"; };
 		5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		5A68881F811E28BE5DF3B396615EF699 /* ClipCollectionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ClipCollectionView.swift; path = ClipLayout/Classes/ClipCollectionView.swift; sourceTree = "<group>"; };
@@ -48,19 +56,19 @@
 		7A682C3E8B23AE9385A38503FAAD0634 /* Pods-ClipLayout_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ClipLayout_Tests-resources.sh"; sourceTree = "<group>"; };
 		7FCF4FEFC96CC7A0B2C1165469CBD352 /* Pods-ClipLayout_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ClipLayout_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		87D6AE1CD66929294DB460395C722E68 /* ClipLayout.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ClipLayout.xcconfig; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		98E92F79DC8122DD9B1561F5344A6F70 /* ClipLayout-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ClipLayout-umbrella.h"; sourceTree = "<group>"; };
-		A331723493B2F80F97C4AB156F35A059 /* ClipLayout.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = ClipLayout.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A331723493B2F80F97C4AB156F35A059 /* ClipLayout.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = ClipLayout.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		ACD4E2DC088C202F38B0C32696AB77F3 /* Pods-ClipLayout_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ClipLayout_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		B271CCFB07C1410E4ECF1C67A1DE235B /* UIView+Swizzle.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+Swizzle.h"; path = "ClipLayout/Classes/UIView+Swizzle.h"; sourceTree = "<group>"; };
 		B843034132E0785DC10F12E766717193 /* UIView+Swizzle.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+Swizzle.m"; path = "ClipLayout/Classes/UIView+Swizzle.m"; sourceTree = "<group>"; };
 		BF6CA11BD41AA651E5C657C0C5776FBA /* ClipLayout.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ClipLayout.modulemap; sourceTree = "<group>"; };
 		D0565806EAA8EEC0D737AB947B282331 /* Pods-ClipLayout_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ClipLayout_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		E1A1E77B9AD0E147F007957E05B4FCEC /* ClipLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ClipLayout.framework; path = ClipLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1A1E77B9AD0E147F007957E05B4FCEC /* ClipLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ClipLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E26747E3E94CCDA4645AFDAE9CAF64E8 /* Pods-ClipLayout_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ClipLayout_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		E5A82159EAAF859346DF4B66025E496B /* Pods-ClipLayout_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ClipLayout_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		F741DCA1EE985FFA85363A4206A4D81E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F7D00C7AB36C7213DBEC6566B272E8B2 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		F7D00C7AB36C7213DBEC6566B272E8B2 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,8 +192,12 @@
 				0272AF456CEA4235208D557A1E522964 /* ClipLayout.swift */,
 				087C394F0A076C9A9FD5B3BDC3D90C1F /* UIView+Layout.h */,
 				7531B997A7B478244CC525DEE6BE4763 /* UIView+Layout.m */,
+				3E1138412138C03300028202 /* CALayer+Layout.h */,
+				3E1138422138C03300028202 /* CALayer+Layout.m */,
 				B271CCFB07C1410E4ECF1C67A1DE235B /* UIView+Swizzle.h */,
 				B843034132E0785DC10F12E766717193 /* UIView+Swizzle.m */,
+				3E11383D2138BF5700028202 /* CALayer+Swizzle.h */,
+				3E11383E2138BF5700028202 /* CALayer+Swizzle.m */,
 				456740432CD14610F4F70832CFF11A9C /* Pod */,
 				B752DF7425F7C80A56BB55C03D6B8C59 /* Support Files */,
 			);
@@ -210,6 +222,8 @@
 			files = (
 				DBC7C8F466B72BA84D4BD53416285D0D /* ClipLayout-umbrella.h in Headers */,
 				4BF9D273F05158ED35D7BDA777FDAC96 /* UIView+Layout.h in Headers */,
+				3E1138432138C03300028202 /* CALayer+Layout.h in Headers */,
+				3E11383F2138BF5700028202 /* CALayer+Swizzle.h in Headers */,
 				3F818470514EE69783EA5FC17D8E7081 /* UIView+Swizzle.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,7 +310,9 @@
 				73A7AFA6393BF8549E35ED8E16B5A61A /* ClipLayout-dummy.m in Sources */,
 				623E59C9F2BC3BB53C2C37C475F59881 /* ClipLayout.swift in Sources */,
 				825E1A601DB2F18C1897341893F7090F /* UIView+Layout.m in Sources */,
+				3E1138402138BF5700028202 /* CALayer+Swizzle.m in Sources */,
 				FF7018BB1F47E70041BA65A851E57D9D /* UIView+Swizzle.m in Sources */,
+				3E1138442138C03300028202 /* CALayer+Layout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
