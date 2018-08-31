@@ -93,6 +93,10 @@ In swift you can use both.
 ```swift
 view.clip.enabled().withWidth(100).withHeight(100).verticallyAligned(.head).withDistribution(.row)
 ```
+
+## 🔲 CALayer support
+
+
 ## Author
 
 Denis Litvin, den.litvinn@gmail.com
