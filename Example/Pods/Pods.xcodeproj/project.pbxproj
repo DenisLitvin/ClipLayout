@@ -8,10 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2A133FA051D7078F721A737205C81465 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
-		3E11383F2138BF5700028202 /* CALayer+Swizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E11383D2138BF5700028202 /* CALayer+Swizzle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E1138402138BF5700028202 /* CALayer+Swizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E11383E2138BF5700028202 /* CALayer+Swizzle.m */; };
-		3E1138432138C03300028202 /* CALayer+Layout.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E1138412138C03300028202 /* CALayer+Layout.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E1138442138C03300028202 /* CALayer+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1138422138C03300028202 /* CALayer+Layout.m */; };
 		3F818470514EE69783EA5FC17D8E7081 /* UIView+Swizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = B271CCFB07C1410E4ECF1C67A1DE235B /* UIView+Swizzle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4BF9D273F05158ED35D7BDA777FDAC96 /* UIView+Layout.h in Headers */ = {isa = PBXBuildFile; fileRef = 087C394F0A076C9A9FD5B3BDC3D90C1F /* UIView+Layout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4CA4C023BCC108F065D79CB3B646A4E7 /* Pods-ClipLayout_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E44A55AECA01060621B312F6327A922 /* Pods-ClipLayout_Tests-dummy.m */; };
@@ -43,10 +39,6 @@
 		1E44A55AECA01060621B312F6327A922 /* Pods-ClipLayout_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ClipLayout_Tests-dummy.m"; sourceTree = "<group>"; };
 		2DFA9FF5E0CD5DB5081E424129F5FD16 /* Pods_ClipLayout_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClipLayout_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FF4F2C997666B6FB0E4A241F383A891 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		3E11383D2138BF5700028202 /* CALayer+Swizzle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CALayer+Swizzle.h"; sourceTree = "<group>"; };
-		3E11383E2138BF5700028202 /* CALayer+Swizzle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Swizzle.m"; sourceTree = "<group>"; };
-		3E1138412138C03300028202 /* CALayer+Layout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CALayer+Layout.h"; sourceTree = "<group>"; };
-		3E1138422138C03300028202 /* CALayer+Layout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Layout.m"; sourceTree = "<group>"; };
 		4F4F630872BCC08E6DFBEB586C1D2B48 /* Pods-ClipLayout_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ClipLayout_Tests-umbrella.h"; sourceTree = "<group>"; };
 		5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		5A68881F811E28BE5DF3B396615EF699 /* ClipCollectionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ClipCollectionView.swift; path = ClipLayout/Classes/ClipCollectionView.swift; sourceTree = "<group>"; };
@@ -192,12 +184,8 @@
 				0272AF456CEA4235208D557A1E522964 /* ClipLayout.swift */,
 				087C394F0A076C9A9FD5B3BDC3D90C1F /* UIView+Layout.h */,
 				7531B997A7B478244CC525DEE6BE4763 /* UIView+Layout.m */,
-				3E1138412138C03300028202 /* CALayer+Layout.h */,
-				3E1138422138C03300028202 /* CALayer+Layout.m */,
 				B271CCFB07C1410E4ECF1C67A1DE235B /* UIView+Swizzle.h */,
 				B843034132E0785DC10F12E766717193 /* UIView+Swizzle.m */,
-				3E11383D2138BF5700028202 /* CALayer+Swizzle.h */,
-				3E11383E2138BF5700028202 /* CALayer+Swizzle.m */,
 				456740432CD14610F4F70832CFF11A9C /* Pod */,
 				B752DF7425F7C80A56BB55C03D6B8C59 /* Support Files */,
 			);
@@ -222,8 +210,6 @@
 			files = (
 				DBC7C8F466B72BA84D4BD53416285D0D /* ClipLayout-umbrella.h in Headers */,
 				4BF9D273F05158ED35D7BDA777FDAC96 /* UIView+Layout.h in Headers */,
-				3E1138432138C03300028202 /* CALayer+Layout.h in Headers */,
-				3E11383F2138BF5700028202 /* CALayer+Swizzle.h in Headers */,
 				3F818470514EE69783EA5FC17D8E7081 /* UIView+Swizzle.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -310,9 +296,7 @@
 				73A7AFA6393BF8549E35ED8E16B5A61A /* ClipLayout-dummy.m in Sources */,
 				623E59C9F2BC3BB53C2C37C475F59881 /* ClipLayout.swift in Sources */,
 				825E1A601DB2F18C1897341893F7090F /* UIView+Layout.m in Sources */,
-				3E1138402138BF5700028202 /* CALayer+Swizzle.m in Sources */,
 				FF7018BB1F47E70041BA65A851E57D9D /* UIView+Swizzle.m in Sources */,
-				3E1138442138C03300028202 /* CALayer+Layout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

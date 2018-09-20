@@ -7,22 +7,22 @@
 
 import UIKit
 
-public protocol DataBinder {
+public protocol ClipDataBinder {
     associatedtype Data
     func set(data: Data)
 }
 
-open class ClipCollectionView<Cell: DataBinder, Header: DataBinder, Footer: DataBinder>:
+open class ClipCollectionView<Cell: ClipDataBinder, Header: ClipDataBinder, Footer: ClipDataBinder>:
     UICollectionView,
     UICollectionViewDataSource,
     UICollectionViewDelegateFlowLayout
     where
-    Cell: ClipCell,
-    Header: ClipCell,
-    Footer: ClipCell
+    Cell: UICollectionViewCell,
+    Header: UICollectionReusableView,
+    Footer: UICollectionReusableView
 {
-    public var footerEnabled = true
-    public var headerEnabled = true
+    public var footerEnabled = false
+    public var headerEnabled = false
     
     public var cellData: [[Cell.Data]] = []
     public var headerData: [Header.Data] = []
@@ -42,6 +42,7 @@ open class ClipCollectionView<Cell: DataBinder, Header: DataBinder, Footer: Data
     
     public init(collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: .zero, collectionViewLayout: layout)
+        
         register(Cell.self, forCellWithReuseIdentifier: cellId)
         register(Header.self,
                  forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
@@ -68,18 +69,6 @@ open class ClipCollectionView<Cell: DataBinder, Header: DataBinder, Footer: Data
     
     //MARK: - CELLS
     open func collectionView(_ collectionView: UICollectionView,
-                             cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId,
-                                                         for: indexPath) as? Cell {
-            cell.set(data: cellData[indexPath.section][indexPath.row])
-            return cell
-        }
-        
-        fatalError("Could not dequeue reusable cell")
-    }
-    
-    open func collectionView(_ collectionView: UICollectionView,
                              layout collectionViewLayout: UICollectionViewLayout,
                              sizeForItemAt indexPath: IndexPath) -> CGSize {
         
@@ -90,9 +79,30 @@ open class ClipCollectionView<Cell: DataBinder, Header: DataBinder, Footer: Data
             height: maxCellSize.height
         )
         
-        let size = manequinCell.clip.measureSize(within: finalMaxSize)
-        manequinCell.clip.invalidateCache()
+        //test
+        //        manequinCell.frame.size = finalMaxSize
+        //        manequinCell.clip.invalidateLayout()
+        //        let size = manequinCell.contentView.bounds.size
+        //        manequinCell.contentView.clip.invalidateCache()
+        
+        let size = manequinCell.contentView.clip.measureSize(within: finalMaxSize)
+        manequinCell.contentView.clip.invalidateCache()
         return size
+    }
+    
+    open func collectionView(_ collectionView: UICollectionView,
+                             cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId,
+                                                         for: indexPath) as? Cell {
+            cell.set(data: cellData[indexPath.section][indexPath.row])
+            cell.contentView.clip.invalidateCache()
+            cell.contentView.clip.invalidateLayout()
+            cell.contentView.clip.invalidateCache()
+            return cell
+        }
+        
+        fatalError("Could not dequeue reusable cell")
     }
     
     //MARK: - HEADER & FOOTER
@@ -138,12 +148,20 @@ open class ClipCollectionView<Cell: DataBinder, Header: DataBinder, Footer: Data
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                          withReuseIdentifier: headerId,
                                                                          for: indexPath) as? Header {
+            header.set(data: headerData[indexPath.row])
+            header.clip.invalidateCache()
+            header.clip.invalidateLayout()
+            header.clip.invalidateCache()
             return header
         }
         
         if let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                         withReuseIdentifier: footerId,
                                                                         for: indexPath) as? Footer {
+            footer.set(data: footerData[indexPath.row])
+            footer.clip.invalidateCache()
+            footer.clip.invalidateLayout()
+            footer.clip.invalidateCache()
             return footer
         }
         
@@ -163,12 +181,5 @@ open class ClipCollectionView<Cell: DataBinder, Header: DataBinder, Footer: Data
                 size.height = collectionView.bounds.height
             }
         }
-    }
-}
-
-open class ClipCell: UICollectionViewCell {
-    override open func layoutSubviews() {
-        super.layoutSubviews()
-        clip.layoutSubviews()
     }
 }

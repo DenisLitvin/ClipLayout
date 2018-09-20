@@ -11,3 +11,7 @@
 @interface UIView (Swizzle)
 
 @end
+
+@interface CALayer (Swizzle)
+
+@end
