@@ -294,18 +294,18 @@ public class ClipLayout: NSObject {
         return CGFloat(result)
     }
     
-    private func measureWidth(within sizeBounds: CGSize) -> CGFloat {
+    private func measureWidth(within fullBounds: CGSize) -> CGFloat {
         var width: CGFloat = 0
-        let sizeBounds = CGSize(width: sizeBounds.width - insets.left - insets.right,
-                                height: sizeBounds.height - insets.top - insets.bottom)
+        let bounds = CGSize(width: fullBounds.width - insets.left - insets.right,
+                            height: fullBounds.height - insets.top - insets.bottom)
         
         if cache.width != 0 { width = cache.width }
         else if wantsSize.width > 0 { width = wantsSize.width }
-        else if horizontallyStretched { width = sizeBounds.width }
+        else if horizontallyStretched { width = bounds.width }
         else if distribution == .row {
             width = view.sublayoutables
                 .filter { $0.clip.enabled }
-                .reduce(0) { $0 + $1.clip.measureSize(within: sizeBounds).width
+                .reduce(0) { $0 + $1.clip.measureSize(within: bounds).width
                     + $1.clip.insets.left
                     + $1.clip.insets.right
             }
@@ -313,57 +313,71 @@ public class ClipLayout: NSObject {
         else if distribution == .column {
             width = view.sublayoutables
                 .filter { $0.clip.enabled }
-                .map { $0.clip.measureSize(within: sizeBounds).width
+                .map { $0.clip.measureSize(within: bounds).width
                     + $0.clip.insets.left
                     + $0.clip.insets.right
                 }
                 .max() ?? 0
         }
         else {
-            let size = view.sizeThatFits(sizeBounds)
+            let size = view.sizeThatFits(bounds)
             width = size.width
             if cache.height == 0 { cache.height = size.height }
         }
+        
         if cache.width == 0 { cache.width = width }
-        adjustForTextInputs(within: sizeBounds)
-        return min(width, sizeBounds.width)
+        return min(width, bounds.width)
     }
     
-    private func measureHeight(within sizeBounds: CGSize) -> CGFloat {
+    private func measureHeight(within fullBounds: CGSize) -> CGFloat {
         var height: CGFloat = 0
-        let sizeBounds = CGSize(width: sizeBounds.width - insets.left - insets.right,
-                                height: sizeBounds.height - insets.top - insets.bottom)
+        let bounds = CGSize(width: fullBounds.width - insets.left - insets.right,
+                            height: fullBounds.height - insets.top - insets.bottom)
         
         if cache.height != 0 { height = cache.height }
         else if wantsSize.height > 0 { height = wantsSize.height }
-        else if verticallyStretched { height = sizeBounds.height }
+        else if verticallyStretched { height = bounds.height }
         else if distribution == .column {
             height = view.sublayoutables
                 .filter { $0.clip.enabled }
-                .reduce(0, { $0 + $1.clip.measureSize(within: sizeBounds).height
+                .reduce(0, { $0 + $1.clip.measureSize(within: bounds).height
                     + $1.clip.insets.top
                     + $1.clip.insets.bottom
                 })
+            
+            
         }
         else if distribution == .row {
-            height = view.sublayoutables
+            let subviews = view.sublayoutables
                 .filter { $0.clip.enabled }
-                .map { $0.clip.measureSize(within: sizeBounds).height
+            //Allow view to adjust height if width will be trimmed
+            //Primarily for UILabel, UITextField etc.
+            let widths = trimmedWidths(for: subviews, within: bounds)
+            for i in 0 ..< subviews.count {
+                let view = subviews[i]
+                let width = widths[i]
+                view.clip.invalidateCache()
+                view.clip.cache.width = width
+            }
+            
+            height = subviews
+                .map { $0.clip.measureSize(within: bounds).height
                     + $0.clip.insets.top
                     + $0.clip.insets.bottom
                 }
                 .max() ?? 0
         }
         else {
-            let size = view.sizeThatFits(sizeBounds)
+            let size = view.sizeThatFits(bounds)
             height = size.height
+            
             if cache.width == 0 {
                 cache.width = size.width
             }
         }
+        
         if cache.height == 0 { cache.height = height }
-        adjustForTextInputs(within: sizeBounds)
-        return min(height, sizeBounds.height)
+        return min(height, bounds.height)
     }
     
     private func adjustForTextInputs(within sizeBounds: CGSize) {
